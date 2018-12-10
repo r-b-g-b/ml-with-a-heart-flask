@@ -165,6 +165,6 @@ def predict(X):
     """
 
     prediction = classifier.predict(X)
-    probability = classifier.predict_proba(X)
+    probability = classifier.predict_proba(X)[:, 0]
 
     return prediction, probability
