@@ -45,5 +45,5 @@ r = requests.post(url, json=json.dumps(data))
 pprint(json.loads(r.text))
 
 {'prediction': [0, 1],
- 'probability': [0.5819, 0.3581]}
+ 'probability': [[0.4180, 0.6418]]}
 ```
