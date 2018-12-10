@@ -29,7 +29,7 @@ def home():
     return """<h1>Machine learning with a heart</h1>""".format()
 
 
-@app.route('/predict', methods=['POST'])
+@app.route('/predict', methods=['POST', 'GET'])
 def predict():
     """Predict heart disease from posted features"""
     if request.method == 'POST':
@@ -53,5 +53,8 @@ def predict():
         X = utils.concatenate_features(features)
         prediction, probability = utils.predict(X)
 
-    return jsonify({'prediction': prediction.tolist(),
-                    'probability': probability.tolist()})
+        return jsonify({'prediction': prediction.tolist(),
+                        'probability': probability.tolist()})
+
+    if request.method == 'GET':
+        return "Try POSTing -- it's much more fun."
