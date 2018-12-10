@@ -1,7 +1,8 @@
-import json
-from flask import request, jsonify
 from ml_with_a_heart import app
+from flask import request, jsonify
 from ml_with_a_heart.api import utils
+import json
+
 
 class CustomException(Exception):
     """Exception for invalid JSON
@@ -21,6 +22,11 @@ class CustomException(Exception):
         response['message'] = self.message
         return response
 
+
+
+@app.route('/')
+def home():
+    return """<h1>Machine learning with a heart</h1>""".format()
 
 
 @app.route('/predict', methods=['POST'])
