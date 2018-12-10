@@ -1,8 +1,7 @@
 from flask import Flask
-import ml_with_a_heart.api.views
-
-
 app = Flask(__name__)
+
+import ml_with_a_heart.api.views
 
 
 if __name__ == '__main__':
