@@ -23,6 +23,12 @@ class CustomException(Exception):
         return response
 
 
+@app.errorhandler(CustomException)
+def handle_custom_exception(error):
+    response = jsonify(error.to_dict())
+    response.status_code = error.status_code
+    return response
+
 
 @app.route('/')
 def home():
@@ -35,7 +41,7 @@ def predict():
     if request.method == 'POST':
         try:
             content = json.loads(request.get_json())
-        except json.JSONDecodeError:
+        except (TypeError, json.JSONDecodeError):
             raise CustomException("Invalid JSON", {'data': str(request.data)})
 
         data, missing_fields, extra_fields = utils.validate_content(content)
